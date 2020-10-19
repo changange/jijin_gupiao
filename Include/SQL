@@ -1,0 +1,45 @@
+CREATE DATABASE jijin_gupiao
+
+##基金表
+CREATE TABLE jijin_list (
+	jijin_id VARCHAR(10) PRIMARY KEY COMMENT '基金代码',
+	jijin_name VARCHAR(40) COMMENT '基金名称',
+	jijin_type VARCHAR(20) COMMENT '基金类型',
+	jijin_create_data VARCHAR(20) COMMENT '基金成立日期',
+	jijin_belong_company VARCHAR(20) COMMENT '基金属于哪个公司'
+) ENGINE=INNODB DEFAULT CHARSET=utf8 COMMENT='基金表';
+
+
+## 基金规模信息可变表
+CREATE TABLE jijin_change_scale (
+	jijin_id VARCHAR(10) PRIMARY KEY COMMENT '基金代码',
+	jijin_name VARCHAR(40) COMMENT '基金名称',
+	jijin_scale VARCHAR(10) COMMENT '基金规模',
+	jijin_data VARCHAR(10) COMMENT '基金爬取数据日期'
+) ENGINE=INNODB DEFAULT CHARSET=utf8 COMMENT='基金规模表';
+
+## 基金历史经理变更表
+CREATE TABLE jijin_change_manage (
+	jijin_id VARCHAR(10) PRIMARY KEY COMMENT '基金代码',
+	jijin_name VARCHAR(40) COMMENT '基金名称',
+	jijin_mange_now VARCHAR(30) COMMENT '基金现在的基金经理',
+	jijin_mange_old VARCHAR(30) COMMENT '基金历史管理人员',
+	jijin_office_data VARCHAR(10) COMMENT '基金经理任期时间',
+	jijin_how_data VARCHAR(10) COMMENT '基金经理任期多长时间',
+	jijn_create_data VARCHAR(20) COMMENT '爬取基金的日期'
+) ENGINE=INNODB DEFAULT CHARSET=utf8 COMMENT='基金历史经理表';
+
+# 历史收益表收益
+CREATE TABLE jijin_change_profit (
+	jijin_id VARCHAR(10) PRIMARY KEY COMMENT '基金代码',
+	jijin_name VARCHAR(40) COMMENT '基金名称',
+	jijin_now_year VARCHAR(10) COMMENT '今年收益',
+	jijin_one_month VARCHAR(10) COMMENT '历史1个月收益',
+	jijin_three_month VARCHAR(10) COMMENT '历史3个月收益',
+	jijin_six_month VARCHAR(10) COMMENT '历史6个月收益',
+	jijin_one_year VARCHAR(10) COMMENT '历史1年收益',
+	jijin_two_year VARCHAR(10) COMMENT '历史2年收益',
+	jijin_three_year VARCHAR(10) COMMENT '历史3年收益',
+	jijin_create_to_now VARCHAR(10) COMMENT '成立以来收益',
+	jijn_create_data VARCHAR(20) COMMENT '爬取基金的日期'
+) ENGINE=INNODB DEFAULT CHARSET=utf8 COMMENT='基金历史收益表';
