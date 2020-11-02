@@ -158,3 +158,4 @@ SELECT * FROM `gupiao_list` GROUP BY gupiao_belong_plate
 SELECT * FROM `jijin_change_manage` WHERE jijin_name = '天弘中证计算机ETF联接A'
 
 哈哈
+这是sQL
