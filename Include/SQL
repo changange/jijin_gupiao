@@ -1,4 +1,6 @@
 CREATE DATABASE jijin_gupiao
+INSERT INTO jijin_change_manage VALUES (8,'','','','','','')
+SELECT * FROM `jijin_gupiao`.`jijin_change_manage`
 
 ##基金表
 CREATE TABLE jijin_list (
@@ -20,14 +22,80 @@ CREATE TABLE jijin_change_scale (
 
 ## 基金历史经理变更表
 CREATE TABLE jijin_change_manage (
-	jijin_id VARCHAR(10) PRIMARY KEY COMMENT '基金代码',
+	jijin_id VARCHAR(10) COMMENT '基金代码',
 	jijin_name VARCHAR(40) COMMENT '基金名称',
-	jijin_mange_now VARCHAR(30) COMMENT '基金现在的基金经理',
-	jijin_mange_old VARCHAR(30) COMMENT '基金历史管理人员',
-	jijin_office_data VARCHAR(10) COMMENT '基金经理任期时间',
+	jijin_mange VARCHAR(30) COMMENT '基金的基金经理',
+	jijin_office_data VARCHAR(30) COMMENT '基金经理任期时间',
 	jijin_how_data VARCHAR(10) COMMENT '基金经理任期多长时间',
+	jijin_mange_shouyi VARCHAR(10) COMMENT '基金经理管理的时候收益',
 	jijn_create_data VARCHAR(20) COMMENT '爬取基金的日期'
-) ENGINE=INNODB DEFAULT CHARSET=utf8 COMMENT='基金历史经理表';
+) ENGINE=INNODB DEFAULT CHARSET=utf8 COMMENT='基金管理的经理表变更';
+
+##  分红表
+CREATE TABLE jijin_fenhong (
+	jijin_id VARCHAR(10) COMMENT '基金代码',
+	jijin_name VARCHAR(40) COMMENT '基金名称',
+	jijin_fenhong_type VARCHAR(20) COMMENT '基金分红类别',
+	jijin_fenhong_num VARCHAR(20) COMMENT '基金分红数量',
+	jijin_fenhong_time VARCHAR(20) COMMENT '基金分红时间'
+) ENGINE=INNODB DEFAULT CHARSET=utf8 COMMENT='基金分红表';
+
+
+##  基金股票持仓
+CREATE TABLE jijin_gupiao_chicang_2020_30 (
+	jijin_id VARCHAR(10) COMMENT '基金代码',
+	jijin_name VARCHAR(40) COMMENT '基金名称',
+	jijin_gupiao_code VARCHAR(10) COMMENT '股票代码',
+	jijin_gupiao_name VARCHAR(20) COMMENT '股票名称',
+	jijin_zhanbi VARCHAR(20) COMMENT '持仓基金的占比',
+	jijin_num VARCHAR(20) COMMENT '持仓基金的数量',
+	jijin_jidu_time VARCHAR(20) COMMENT '什么时候的数据'
+) ENGINE=INNODB DEFAULT CHARSET=utf8 COMMENT='基金股票持仓表';
+
+##  基金股票持仓  2020
+CREATE TABLE jijin_gupiao_chicang_2020_100 (
+	jijin_id VARCHAR(10) COMMENT '基金代码',
+	jijin_name VARCHAR(40) COMMENT '基金名称',
+	jijin_gupiao_code VARCHAR(10) COMMENT '股票代码',
+	jijin_gupiao_name VARCHAR(20) COMMENT '股票名称',
+	jijin_zhanbi VARCHAR(20) COMMENT '持仓基金的占比',
+	jijin_num VARCHAR(20) COMMENT '持仓基金的数量',
+	jijin_jidu_time VARCHAR(20) COMMENT '什么时候的数据'
+) ENGINE=INNODB DEFAULT CHARSET=utf8 COMMENT='基金股票持仓表 排名前100';
+
+##  基金股票持仓 2019
+CREATE TABLE jijin_gupiao_chicang_2019_100 (
+	jijin_id VARCHAR(10) COMMENT '基金代码',
+	jijin_name VARCHAR(40) COMMENT '基金名称',
+	jijin_gupiao_code VARCHAR(10) COMMENT '股票代码',
+	jijin_gupiao_name VARCHAR(20) COMMENT '股票名称',
+	jijin_zhanbi VARCHAR(20) COMMENT '持仓基金的占比',
+	jijin_num VARCHAR(20) COMMENT '持仓基金的数量',
+	jijin_jidu_time VARCHAR(20) COMMENT '什么时候的数据'
+) ENGINE=INNODB DEFAULT CHARSET=utf8 COMMENT='基金股票持仓表-2019 排名前100';
+
+##  基金股票持仓 2018
+CREATE TABLE jijin_gupiao_chicang_2018_100 (
+	jijin_id VARCHAR(10) COMMENT '基金代码',
+	jijin_name VARCHAR(40) COMMENT '基金名称',
+	jijin_gupiao_code VARCHAR(10) COMMENT '股票代码',
+	jijin_gupiao_name VARCHAR(20) COMMENT '股票名称',
+	jijin_zhanbi VARCHAR(20) COMMENT '持仓基金的占比',
+	jijin_num VARCHAR(20) COMMENT '持仓基金的数量',
+	jijin_jidu_time VARCHAR(20) COMMENT '什么时候的数据'
+) ENGINE=INNODB DEFAULT CHARSET=utf8 COMMENT='基金股票持仓表-2018 排名前100';
+
+##  基金股票持仓 2017
+CREATE TABLE jijin_gupiao_chicang_2017_100 (
+	jijin_id VARCHAR(10) COMMENT '基金代码',
+	jijin_name VARCHAR(40) COMMENT '基金名称',
+	jijin_gupiao_code VARCHAR(10) COMMENT '股票代码',
+	jijin_gupiao_name VARCHAR(20) COMMENT '股票名称',
+	jijin_zhanbi VARCHAR(20) COMMENT '持仓基金的占比',
+	jijin_num VARCHAR(20) COMMENT '持仓基金的数量',
+	jijin_jidu_time VARCHAR(20) COMMENT '什么时候的数据'
+) ENGINE=INNODB DEFAULT CHARSET=utf8 COMMENT='基金股票持仓表-2017 排名前100';
+
 
 # 历史收益表收益
 CREATE TABLE jijin_change_profit (
@@ -43,3 +111,48 @@ CREATE TABLE jijin_change_profit (
 	jijin_create_to_now VARCHAR(10) COMMENT '成立以来收益',
 	jijn_create_data VARCHAR(20) COMMENT '爬取基金的日期'
 ) ENGINE=INNODB DEFAULT CHARSET=utf8 COMMENT='基金历史收益表';
+
+
+##股票表
+CREATE TABLE gupiao_list (
+	gupiao_id VARCHAR(10) PRIMARY KEY COMMENT '股票代码',
+	gupiao_name VARCHAR(20) COMMENT '股票名称',
+	gupiao_belong_plate VARCHAR(20) COMMENT '股票属于哪个分类',
+	gupiao_belong_type VARCHAR(20) COMMENT '股票在哪个板'
+) ENGINE=INNODB DEFAULT CHARSET=utf8 COMMENT='股票表';
+
+
+
+##truncate table `jijin_change_manage`
+## truncate table `jijin_gupiao_chicang_2019_100`
+## drop	table `jijin_fenhong`
+
+SELECT COUNT(*) FROM `jijin_change_profit` WHERE jijin_id = '460300'
+
+SELECT * FROM `jijin_list` WHERE jijin_name LIKE '%债券%' AND jijin_type IN ('GP','ZS')
+
+UPDATE `jijin_list` SET jijin_type='ZS' WHERE jijin_name LIKE '%指数%' AND jijin_type IN ('GP','ZQ')
+
+SELECT jijin_id,jijin_name FROM jijin_list LIMIT 0,100
+SELECT * FROM `jijin_list` WHERE jijin_name = '华夏大盘精选'
+
+SELECT * FROM `jijin_change_profit` WHERE jijin_name = '天弘中证计算机ETF联接A'
+SELECT COUNT(*) FROM jijin_change_scale WHERE jijin_data != '2020-06-30'
+
+SELECT COUNT(*) FROM `jijin_fenhong`
+
+SELECT COUNT(*) FROM `jijin_gupiao_chicang_2017_100`
+SELECT * FROM jijin_gupiao_chicang_2019_100 WHERE jijin_gupiao_name='证通电子'
+SELECT COUNT(*) FROM `jijin_gupiao_chicang_2020_30`
+
+SELECT * FROM `jijin_gupiao_chicang_2020_30` WHERE jijin_id='050023'
+
+
+SELECT COUNT(*) FROM `gupiao_list` WHERE gupiao_belong_type = '科创板'
+
+SELECT * FROM `gupiao_list` WHERE gupiao_id='688129'
+
+SELECT * FROM `gupiao_list` GROUP BY gupiao_belong_plate
+
+
+SELECT * FROM `jijin_change_manage` WHERE jijin_name = '天弘中证计算机ETF联接A'
