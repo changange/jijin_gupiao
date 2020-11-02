@@ -334,5 +334,4 @@ class TTJijin:
 if __name__ == '__main__':
     t = TTJijin()
     t.getJijinGupiaoCicang()
-    #
     # print(math.ceil(5.4))
